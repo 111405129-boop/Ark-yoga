@@ -1,792 +1,337 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>方舟瑜珈 Ark Yoga - 願瑜珈成為方舟，乘載疲憊身心</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Serif TC', serif;
-            line-height: 1.8;
-            color: #5a4a42;
-            background-color: #fef8f8;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #ffc2d1 0%, #ffb3c6 100%);
-            padding: 1.2rem 0;
-            box-shadow: 0 2px 15px rgba(255, 182, 193, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            font-size: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-            font-size: 1.05rem;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.7;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(255, 240, 245, 0.95), rgba(255, 240, 245, 0.95)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ffe4e9" width="1200" height="600"/><circle cx="150" cy="100" r="60" fill="%23ffc2d1" opacity="0.3"/><circle cx="950" cy="450" r="90" fill="%23ffb3c6" opacity="0.3"/><circle cx="600" cy="300" r="120" fill="%23ffd4e0" opacity="0.2"/><path d="M 300 200 Q 400 150 500 200 T 700 200" stroke="%23ffc2d1" stroke-width="2" fill="none" opacity="0.3"/></svg>');
-            background-size: cover;
-            background-position: center;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 1.5rem;
-            color: #8b6f6f;
-            animation: fadeInUp 1s ease;
-            line-height: 1.4;
-            font-weight: 500;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: #a07d7d;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease 0.2s backwards;
-            font-weight: 400;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #9d8484;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 1s ease 0.4s backwards;
-            line-height: 2;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.6s backwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffb3c6 0%, #ffc2d1 100%);
-            color: white;
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 182, 193, 0.5);
-        }
-
-        .cta-button.secondary {
-            background: white;
-            color: #ff9eb3;
-            border: 2px solid #ffb3c6;
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .about-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            color: #8b6f6f;
-            position: relative;
-            padding-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #ffb3c6, #ffc2d1);
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #a0838f;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-
-        .about-content {
-            font-size: 1.15rem;
-            line-height: 2.2;
-            color: #6d5d5d;
-            margin-bottom: 2rem;
-        }
-
-        .about-highlight {
-            background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 5px solid #ffb3c6;
-            margin: 2rem 0;
-            color: #8b6f6f;
-            font-size: 1.2rem;
-            line-height: 2;
-        }
-
-        /* Teacher Section */
-        .teacher {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #fff5f8 0%, #ffe9f0 100%);
-        }
-
-        .teacher-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .teacher-image {
-            background: linear-gradient(135deg, #ffc2d1 0%, #ffb3c6 100%);
-            border-radius: 20px;
-            aspect-ratio: 3/4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
-        }
-
-        .teacher-info h3 {
-            font-size: 2rem;
-            color: #8b6f6f;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .teacher-info p {
-            font-size: 1.1rem;
-            line-height: 2;
-            color: #6d5d5d;
-            margin-bottom: 1.5rem;
-        }
-
-        .credentials {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-top: 2rem;
-        }
-
-        .credentials h4 {
-            color: #ff9eb3;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            font-weight: 500;
-        }
-
-        .credentials ul {
-            list-style: none;
-        }
-
-        .credentials li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: #6d5d5d;
-        }
-
-        .credentials li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #ffb3c6;
-            font-weight: bold;
-        }
-
-        /* Classes Section */
-        .classes {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .classes-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .class-types {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .class-type-card {
-            background: linear-gradient(135deg, #fff5f8 0%, #ffe9f0 100%);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .class-type-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
-        }
-
-        .class-type-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .class-type-card h3 {
-            font-size: 1.8rem;
-            color: #8b6f6f;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .class-type-card p {
-            color: #6d5d5d;
-            line-height: 1.8;
-            margin-bottom: 0.8rem;
-        }
-
-        .class-type-card strong {
-            color: #ff9eb3;
-        }
-
-        .suitable-for {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 1.5rem;
-        }
-
-        .suitable-for h4 {
-            color: #ff9eb3;
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-        }
-
-        .suitable-for ul {
-            list-style: none;
-            color: #6d5d5d;
-            font-size: 0.95rem;
-        }
-
-        .suitable-for li {
-            padding: 0.4rem 0;
-            padding-left: 1.3rem;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .suitable-for li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #ffb3c6;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .class-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .class-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 2px solid #ffe4ec;
-            transition: all 0.3s;
-        }
-
-        .class-item:hover {
-            border-color: #ffb3c6;
-            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.2);
-        }
-
-        .class-item h4 {
-            color: #ff9eb3;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .class-item p {
-            color: #8b7878;
-            font-size: 0.95rem;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #ffe9f0 0%, #ffd9e6 100%);
-        }
-
-        .testimonials-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.2);
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 3rem;
-            color: #ffc2d1;
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-            opacity: 0.3;
-        }
-
-        .testimonial-text {
-            color: #6d5d5d;
-            margin-bottom: 1.5rem;
-            line-height: 2;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: #ff9eb3;
-            font-size: 1.1rem;
-        }
-
-        .testimonial-role {
-            color: #a0838f;
-            font-size: 0.9rem;
-        }
-
-        /* Location & Contact */
-        .contact {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .contact-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            background: linear-gradient(135deg, #fff5f8 0%, #ffe9f0 100%);
-            padding: 2.5rem;
-            border-radius: 20px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: start;
-            margin-bottom: 2rem;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            min-width: 40px;
-        }
-
-        .contact-item h4 {
-            color: #8b6f6f;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .contact-item p {
-            color: #6d5d5d;
-            line-height: 1.8;
-        }
-
-        .map-placeholder {
-            background: linear-gradient(135deg, #ffc2d1 0%, #ffb3c6 100%);
-            border-radius: 20px;
-            height: 100%;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #8b6f6f 0%, #a0838f 100%);
-            color: white;
-            padding: 3rem 2rem 1.5rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #ffc2d1;
-            font-weight: 500;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: #f5e6eb;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            line-height: 1.8;
-        }
-
-        .footer-section a:hover {
-            color: #ffc2d1;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: #f5e6eb;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        .social-link:hover {
-            background: #ffc2d1;
-            transform: translateY(-3px);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .teacher-container,
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .class-types {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>方舟瑜珈 Ark Yoga - 願瑜珈成為方舟，乘載疲憊身心</title>
+  <meta name="description" content="方舟瑜珈 Ark Yoga｜新店北新路一段。實體課程與線上錄影課程，從呼吸、體位法到頌缽音療，陪你在日常中找回穩定與專注。"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Noto Serif TC',serif;line-height:1.8;color:#5a4a42;background:#fef8f8}
+    /* Header */
+    header{background:linear-gradient(135deg,#ffc2d1 0%,#ffb3c6 100%);padding:1.2rem 0;box-shadow:0 2px 15px rgba(255,182,193,.3);position:sticky;top:0;z-index:100}
+    nav{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem}
+    .logo{font-size:1.6rem;font-weight:600;color:#fff;display:flex;align-items:center;gap:.5rem}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .3s;font-size:1.05rem}
+    .nav-links a:hover{opacity:.7}
+
+    /* Hero */
+    .hero{background:linear-gradient(rgba(255,240,245,.95),rgba(255,240,245,.95)),
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ffe4e9" width="1200" height="600"/><circle cx="150" cy="100" r="60" fill="%23ffc2d1" opacity="0.3"/><circle cx="950" cy="450" r="90" fill="%23ffb3c6" opacity="0.3"/><circle cx="600" cy="300" r="120" fill="%23ffd4e0" opacity="0.2"/></svg>');background-size:cover;background-position:center;padding:6rem 2rem;text-align:center}
+    .hero-content{max-width:900px;margin:0 auto}
+    .hero h1{font-size:3rem;margin-bottom:1rem;color:#8b6f6f;animation:fadeInUp 1s ease;font-weight:600;line-height:1.35}
+    .hero-subtitle{font-size:1.3rem;color:#a07d7d;margin-bottom:1rem;animation:fadeInUp 1s ease .15s backwards}
+    .hero p{font-size:1.1rem;color:#9d8484;margin-bottom:2rem;animation:fadeInUp 1s ease .3s backwards}
+    .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeInUp 1s ease .45s backwards}
+    .cta-button{display:inline-block;background:linear-gradient(135deg,#ffb3c6 0%,#ffc2d1 100%);color:#fff;padding:.9rem 2rem;text-decoration:none;border-radius:50px;font-weight:600;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 15px rgba(255,182,193,.4)}
+    .cta-button:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,182,193,.5)}
+    .cta-button.secondary{background:#fff;color:#ff9eb3;border:2px solid #ffb3c6}
+
+    /* Section */
+    .section{padding:5rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .section-title{text-align:center;font-size:2.4rem;margin-bottom:.8rem;color:#8b6f6f;position:relative;padding-bottom:.8rem;font-weight:500}
+    .section-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:3px;background:linear-gradient(90deg,#ffb3c6,#ffc2d1);border-radius:2px}
+    .section-subtitle{text-align:center;font-size:1.05rem;color:#a0838f;margin-bottom:2rem}
+
+    /* About */
+    .about .content{font-size:1.05rem;line-height:2;color:#6d5d5d;display:grid;gap:1.5rem}
+    .highlight{background:linear-gradient(135deg,#fff0f5 0%,#ffe4ec 100%);padding:1.6rem;border-radius:14px;border-left:5px solid #ffb3c6;color:#8b6f6f}
+
+    /* Teacher */
+    .teacher-wrap{display:grid;grid-template-columns:1fr 2fr;gap:2.5rem;align-items:start}
+    .teacher-image{background:linear-gradient(135deg,#ffc2d1 0%,#ffb3c6 100%);border-radius:18px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:5rem;box-shadow:0 10px 30px rgba(255,182,193,.3)}
+    .teacher-info h3{font-size:1.8rem;color:#8b6f6f;margin-bottom:.6rem}
+    .teacher-info p{font-size:1.05rem;color:#6d5d5d;margin-bottom:1rem}
+    .credentials{background:#fff;padding:1.2rem;border-radius:14px;margin-top:1rem}
+    .credentials h4{color:#ff9eb3;margin-bottom:.6rem;font-size:1.1rem}
+    .credentials ul{list-style:none}
+    .credentials li{padding:.35rem 0 .35rem 1.3rem;position:relative;color:#6d5d5d}
+    .credentials li::before{content:'✓';position:absolute;left:0;color:#ffb3c6;font-weight:700}
+
+    /* Classes */
+    .types{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem;margin-top:1rem}
+    .type-card{background:linear-gradient(135deg,#fff5f8 0%,#ffe9f0 100%);padding:2rem;border-radius:18px;box-shadow:0 5px 20px rgba(255,182,193,.2);transition:transform .3s,box-shadow .3s}
+    .type-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(255,182,193,.3)}
+    .type-icon{font-size:2.2rem;margin-bottom:.6rem}
+    .type-card h3{font-size:1.5rem;color:#8b6f6f;margin-bottom:.4rem;font-weight:500}
+    .type-card p{color:#6d5d5d;margin-bottom:.3rem}
+    .type-card strong{color:#ff7f9a}
+    .suitable{background:#fff;padding:1rem;border-radius:12px;margin-top:1rem}
+    .suitable h4{color:#ff9eb3;font-size:1rem;margin-bottom:.5rem}
+    .suitable ul{list-style:none;color:#6d5d5d;font-size:.95rem}
+    .suitable li{padding:.35rem 0 .35rem 1.1rem;position:relative}
+    .suitable li::before{content:'•';position:absolute;left:0;color:#ffb3c6;font-weight:700}
+
+    .class-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2rem}
+    .class-item{background:#fff;padding:1.2rem;border-radius:14px;border:2px solid #ffe4ec;transition:all .3s}
+    .class-item:hover{border-color:#ffb3c6;box-shadow:0 5px 20px rgba(255,182,193,.2)}
+    .class-item h4{color:#ff7f9a;margin-bottom:.4rem;font-size:1.1rem}
+
+    /* Testimonials */
+    .testimonials{background:linear-gradient(135deg,#ffe9f0 0%,#ffd9e6 100%)}
+    .t-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem;margin-top:1.6rem}
+    .t-card{background:#fff;padding:2rem;border-radius:18px;box-shadow:0 5px 20px rgba(255,182,193,.2);position:relative}
+    .t-quote{font-size:2.4rem;color:#ffc2d1;position:absolute;top:.6rem;left:1rem;opacity:.35}
+    .t-text{color:#6d5d5d;margin-bottom:1rem;line-height:1.9;position:relative;z-index:1}
+    .t-author{font-weight:600;color:#ff7f9a}
+    .t-role{color:#a0838f;font-size:.9rem}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .contact-box{background:linear-gradient(135deg,#fff5f8 0%,#ffe9f0 100%);padding:2rem;border-radius:18px}
+    .c-item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.2rem}
+    .c-icon{font-size:1.6rem;min-width:30px}
+    .c-item h4{color:#8b6f6f;font-size:1.1rem;margin-bottom:.1rem}
+    .map{background:linear-gradient(135deg,#ffc2d1 0%,#ffb3c6 100%);border-radius:18px;min-height:360px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.2rem}
+
+    /* Footer */
+    footer{background:linear-gradient(135deg,#8b6f6f 0%,#a0838f 100%);color:#fff;padding:3rem 2rem 1.5rem}
+    .f-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem;margin-bottom:1.6rem}
+    .f-sec h3{margin-bottom:.6rem;color:#ffc2d1;font-weight:500}
+    .f-sec p,.f-sec a{color:#f5e6eb;text-decoration:none;display:block;margin-bottom:.35rem}
+    .f-sec a:hover{color:#ffc2d1}
+    .f-bottom{text-align:center;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.2);color:#f5e6eb}
+    .socials{display:flex;gap:.6rem;margin-top:.6rem}
+    .social{width:40px;height:40px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s}
+    .social:hover{background:#ffc2d1;transform:translateY(-3px)}
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+    @media (max-width:768px){
+      .hero h1{font-size:2rem}
+      .hero-subtitle{font-size:1.1rem}
+      .nav-links{gap:1rem;font-size:.95rem}
+      .teacher-wrap,.contact-grid{grid-template-columns:1fr}
+      .types{grid-template-columns:1fr}
+      .section-title{font-size:2rem}
+      .cta-buttons{flex-direction:column}
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">
-                <span class="logo-icon">🧘‍♀️</span>
-                <span>方舟瑜珈 Ark Yoga</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">首頁</a></li>
-                <li><a href="#about">關於方舟</a></li>
-                <li><a href="#classes">課程介紹</a></li>
-                <li><a href="#testimonials">學員推薦</a></li>
-                <li><a href="#contact">聯絡我們</a></li>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo"><span>🧘‍♀️</span><span>方舟瑜珈 Ark Yoga</span></div>
+      <ul class="nav-links">
+        <li><a href="#home">首頁</a></li>
+        <li><a href="#about">關於方舟</a></li>
+        <li><a href="#classes">課程介紹</a></li>
+        <li><a href="#testimonials">學員推薦</a></li>
+        <li><a href="#contact">聯絡我們</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>願瑜珈成為方舟，乘載疲憊身心</h1>
+      <p class="hero-subtitle">讓心之所向，成為身之所往</p>
+      <p>在日常的喧囂裡，用呼吸與專注回到自己。從當下開始，練習穩定與自由。</p>
+      <div class="cta-buttons">
+        <a class="cta-button" href="#classes">探索課程</a>
+        <a class="cta-button secondary" href="#contact">立即預約</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section about" id="about">
+    <div class="container">
+      <h2 class="section-title">關於方舟瑜珈</h2>
+      <p class="section-subtitle">Yoga Citta Vrtti Nirodhah — 平靜意識的波動</p>
+
+      <div class="content">
+        <p>方舟瑜珈在新店，提供實體與線上練習。以安全、穩定、循序為核心，讓每個人都能在自己的步調裡，找到更好的身心狀態。</p>
+        <div class="highlight">「自由不在遠方，而在你的身心靈之中。」— B.K.S. 艾揚格</div>
+        <p>我們從呼吸、體位法與冥想出發，把練習放回生活：專注、觀照、放下評比。讓每天 60 分鐘，成為修復與前進的能量。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teacher -->
+  <section class="section teacher" id="teacher">
+    <div class="container">
+      <h2 class="section-title">認識 KiKi 老師</h2>
+      <p class="section-subtitle">練習二十年，以溫和與精準陪你前進</p>
+
+      <div class="teacher-wrap">
+        <div class="teacher-image">🧘‍♀️</div>
+        <div class="teacher-info">
+          <h3>KiKi 老師</h3>
+          <p>相信每一次練習，都是重新與自己相遇。以簡潔指引與個別調整，幫你建立穩固基礎，溫柔而有效地進步。</p>
+          <div class="highlight" style="margin:1rem 0">
+            收攝感官・傾聽內心・觀照身體<br/>你值得更安定，也值得被溫柔對待
+          </div>
+          <p style="color:#ff7f9a">Namaste 🙏</p>
+
+          <div class="credentials">
+            <h4>專業認證</h4>
+            <ul>
+              <li>RYT 200 小時</li>
+              <li>火箭瑜珈師資 60 小時</li>
+              <li>瑜珈輪師資 40 小時</li>
+              <li>頌缽音療師一級</li>
+              <li>樂齡運動健身教練</li>
             </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>願瑜珈成為方舟<br>乘載疲憊身心</h1>
-            <p class="hero-subtitle">讓心之所向成為身之所往</p>
-            <p>在喧囂中尋找平靜的桃花源<br>透過瑜珈找到內心真正的自由與安寧</p>
-            <div class="cta-buttons">
-                <a href="#classes" class="cta-button">探索課程</a>
-                <a href="#contact" class="cta-button secondary">立即預約</a>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <h2 class="section-title">關於方舟瑜珈</h2>
-            <p class="section-subtitle">Yoga Citta Vrtti Niroodhah — 瑜珈即為平靜意識的波動</p>
-            
-            <div class="about-content">
-                <p>我們總在喧囂中尋找那塊平靜的桃花源。然而想遠離花花世界的道路太複雜，總有許多無法割捨的人事物牽絆著心情，將我們束縛在原地。</p>
+  <!-- Classes -->
+  <section class="section classes" id="classes">
+    <div class="container">
+      <h2 class="section-title">課程介紹</h2>
+      <p class="section-subtitle">實體與線上錄影，依你的節奏練習</p>
 
-                <div class="about-highlight">
-                    「你無須前往遙遠國度尋求自由<br>因為自由就在你的身心靈之中」<br><br>
-                    — 瑜珈大師 艾揚格
-                </div>
-
-                <p>透過練習呼吸、冥想、潔淨法、體位法，從而獲得真正的安寧與放鬆。藉由瑜珈讓生活變成行動的冥想，以身體訓練平靜意識波動。</p>
-
-                <div class="about-highlight">
-                    身體是看得見的心智<br>
-                    心智是看不見的身體<br><br>
-                    用心智帶領你的身體<br>
-                    用身體修復你的心智
-                </div>
-
-                <p>唯有好好觀照自己穩定內在，才能找到心之所向的自由。期許方舟瑜珈，乘載你疲憊的身心，陪伴你找到內心自由。</p>
-            </div>
+      <div class="types">
+        <div class="type-card">
+          <div class="type-icon">🏠</div>
+          <h3>實體課程</h3>
+          <p><strong>地點：</strong>新店區北新路一段 293 號</p>
+          <p>面對面帶領與即時調整，建立穩固基礎與安全對齊。</p>
         </div>
-    </section>
 
-    <!-- Teacher Section -->
-    <section class="teacher">
-        <div class="about-container">
-            <h2 class="section-title">認識 KiKi 老師</h2>
-            <p class="section-subtitle">練習瑜珈超過 20 年的 Yogies</p>
+        <div class="type-card">
+          <div class="type-icon">💻</div>
+          <h3>線上錄影課程</h3>
+          <p>不限時間地點，重播複習、依體能調整步調。</p>
+          <div class="suitable">
+            <h4>適合族群</h4>
+            <ul>
+              <li>時間不固定的上班族／家庭照顧者</li>
+              <li>初學者、想安靜練習或在家運動者</li>
+              <li>需循序漸進、擔心跟不上的學員</li>
+            </ul>
+          </div>
         </div>
-        
-        <div class="teacher-container">
-            <div class="teacher-image">
-                🧘‍♀️
-            </div>
-            <div class="teacher-info">
-                <h3>KiKi 老師</h3>
-                <p>瑜珈已經是生活模式，藉由每一次的練習來檢視身體及心理。每一次的練習，都是一張白紙、不帶任何期望，一分一秒的去經歷，才是最真實的感受。</p>
+      </div>
 
-                <p>慢慢的，你會感受到瑜珈為你帶來的改變，這是值得慢慢品嚐及解讀的。</p>
+      <h3 class="section-title" style="font-size:1.8rem;margin-top:2rem">課程大綱</h3>
+      <div class="class-list">
+        <div class="class-item"><h4>Wheel Yoga 瑜珈輪</h4><p>以輪輔具深化後彎與開肩，安全擴胸。</p></div>
+        <div class="class-item"><h4>Ashtanga 阿斯坦加</h4><p>循序序列，結合呼吸與流動。</p></div>
+        <div class="class-item"><h4>Rocket 火箭瑜珈</h4><p>充滿活力的動態挑戰，強化穩定與專注。</p></div>
+        <div class="class-item"><h4>Vinyasa 流動瑜珈</h4><p>流暢串聯、穩定核心與呼吸節奏。</p></div>
+        <div class="class-item"><h4>Yin 陰瑜珈</h4><p>緩慢深層伸展，放鬆筋膜與結締組織。</p></div>
+        <div class="class-item"><h4>頌缽瑜珈</h4><p>在聲音振動中安住，進入更深層放鬆。</p></div>
+        <div class="class-item"><h4>頌缽音療</h4><p>以共振釋放壓力，沉澱思緒。</p></div>
+      </div>
+    </div>
+  </section>
 
-                <div class="about-highlight" style="margin: 1.5rem 0; padding: 1.5rem;">
-                    收攝你的感官<br>
-                    傾聽你的內心<br>
-                    觀照你的身體<br>
-                    你值得變得更美好
-                </div>
+  <!-- Testimonials -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">學員推薦</h2>
+      <p class="section-subtitle">真實回饋，來自每一次專注的練習</p>
 
-                <p>每個人練習瑜珈的動力都不一樣 — 瘦身、增加肌力、緩解酸痛、增加柔軟度，任何一個都可以是理由。不分男女、不論年紀，希望你可以帶著愉快的心情，與 KiKi 一同練習。</p>
-
-                <p style="text-align: center; color: #ff9eb3; font-size: 1.2rem; margin-top: 1rem;">Namaste 🙏</p>
-
-                <div class="credentials">
-                    <h4>專業認證</h4>
-                    <ul>
-                        <li>美國瑜珈聯盟 RYT 200小時</li>
-                        <li>美國瑜珈聯盟 RYT 火箭瑜珈師資 60小時</li>
-                        <li>美國瑜珈聯盟 RYT 瑜珈輪師資 40小時</li>
-                        <li>頌缽音療師一級</li>
-                        <li>樂齡運動健身教練</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="t-grid">
+        <div class="t-card">
+          <div class="t-quote">“</div>
+          <p class="t-text">上班常肩頸緊，跟著 KiKi 老師三個月後，姿勢穩多了，睡眠也進步。指令很清楚，調整很溫柔。</p>
+          <div class="t-author">怡甄｜行銷企劃</div>
+          <div class="t-role">實體課程學員</div>
         </div>
-    </section>
+        <div class="t-card">
+          <div class="t-quote">“</div>
+          <p class="t-text">線上錄影超方便，出差也能練。每次 30–40 分鐘，就能把焦慮放下，回到呼吸。</p>
+          <div class="t-author">Richard｜工程師</div>
+          <div class="t-role">線上錄影學員</div>
+        </div>
+        <div class="t-card">
+          <div class="t-quote">“</div>
+          <p class="t-text">從零開始也不會害怕。老師會依能力給變化版，慢慢就能做到自己以為做不到的動作。</p>
+          <div class="t-author">曉婷｜自由工作者</div>
+          <div class="t-role">初學者</div>
+        </div>
+        <div class="t-card">
+          <div class="t-quote">“</div>
+          <p class="t-text">頌缽音療讓我第一次體會「全身都放下」。練習後，情緒穩定很多，真的有被承接的感覺。</p>
+          <div class="t-author">嘉芸｜護理師</div>
+          <div class="t-role">頌缽音療體驗</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Classes Section -->
-    <section class="classes" id="classes">
-        <div class="classes-container">
-            <h2 class="section-title">課程介紹</h2>
-            <p class="section-subtitle">實體課程與線上錄影課程，彈性選擇最適合您的練習方式</p>
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">聯絡我們</h2>
+      <p class="section-subtitle">預約課程／私訊諮詢／合作洽談</p>
 
-            <div class="class-types">
-                <div class="class-type-card">
-                    <div class="class-type-icon">🏠</div>
-                    <h3>實體課程</h3>
-                    <p>在溫馨舒適的教室空間中，與 KiKi 老師面對面學習，享受專業的個別指導與即時調整。</p>
-                    <p><strong>地點：</strong>新店區北新路一段293號</p>
-                    <p><strong>適合：</strong>想要深入學習、需要姿勢調整指導的學員</p>
-                </div>
-                
-                <div class="class-type-card">
-                    <div class="class-type-icon">💻</div>
-                    <h3>線上錄影課程</h3>
-                    <p>突破時間與空間限制，隨時隨地都能練習。錄影回放功能讓您可以按照自己的節奏反覆練習，不用擔心跟不上進度。</p>
-                    <p><strong>平台：</strong>線上影片平台</p>
-                    <p><strong>費用：</strong>經濟實惠，無需綁約</p>
-                    
-                    <div class="suitable-for">
-                        <h4>特別適合以下族群：</h4>
-                        <ul>
-                            <li><strong>家庭主婦</strong> — 要顧小孩，很難有時間出門</li>
-                            <li><strong>上班族</strong> — 下班時間不穩定，買實體課常請假浪費錢</li>
-                            <li><strong>社恐人士</strong> — 想要自己一個人安靜的練習</li>
-                            <li><strong>體能不佳或體重過重</strong> — 可隨時暫停休息，按照當天體能狀態調整</li>
-                            <li><strong>男性學員</strong> — 不好意思進入女性居多的教室</li>
-                            <li><strong>年長者</strong> — 不用擔心年紀問題，在家輕鬆練習</li>
-                            <li><strong>想帶家人一起運動</strong> — 先從線上開始，成本較低</li>
-                            <li><strong>小資族</strong> — 不想一次花大筆費用，無需綁約</li>
-                            <li><strong>常出差或旅遊</strong> — 出差晚上回飯店也可以練習</li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="contact-grid">
+        <div class="contact-box">
+          <div class="c-item">
+            <div class="c-icon">📍</div>
+            <div>
+              <h4>教室地址</h4>
+              <p>新北市新店區北新路一段 293 號</p>
             </div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">✉️</div>
+            <div>
+              <h4>Email</h4>
+              <p>arkyoga@example.com</p>
+            </div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">💬</div>
+            <div>
+              <h4>Line / IG</h4>
+              <p>Line：@arkyoga　|　Instagram：@ark.yoga</p>
+            </div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">🗓️</div>
+            <div>
+              <h4>預約方式</h4>
+              <p>私訊社群或來信，回覆提供近期課表與方案。</p>
+            </div>
+          </div>
+        </div>
 
-            <h3 class="section-title" style="font-size: 2rem; margin-top: 3rem;">課程大綱</h3>
-            
-            <div class="class-list">
-                <div class="class-item">
-                    <h4>Wheel Yoga 瑜珈輪</h4>
-                    <p>運用瑜珈輪輔具深化後彎與伸展，打開胸腔與肩膀</p>
-                </div>
-                
-                <div class="class-item">
-                    <h4>ASHTANGA Yoga 阿斯坦加</h4>
-                    <p>傳統動態瑜珈序列，結合呼吸與流動</p>
-                </div>
-                
-                <div class="class-item">
-                    <h4>Rocket Yoga 火箭瑜珈</h4>
-                    <p>充滿活力的動態練習，適合想挑戰自我的學員</p>
-                </div>
-                
-                <div class="class-item">
-                    <h4>Vinyasa Yoga 流動瑜珈</h4>
-                    <p>流暢的動作串連，配合呼吸節奏</p>
-                </div>
-                
-                <div class="class-item">
-                    <h4>Yin Yoga 陰瑜珈</h4>
-                    <p>緩慢深層的伸展，放鬆筋膜與深層結締組織</p>
-                </div>
-                
-                <div class="class-item">
-                    <h4>頌缽瑜珈</h4>
-                    <p>結合頌缽療癒音頻，在聲音振動中深度放鬆</p>
-                </div>
-                
-                <div class="class-item">
-                    <h4>頌缽音療</h4>
-                    <p>透過頌缽的共振頻，引導人們釋放壓力、沉靜思緒</p>
+        <div class="map">Google Map</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="f-grid">
+      <div class="f-sec">
+        <h3>方舟瑜珈 Ark Yoga</h3>
+        <p>在可持續的練習裡，找回身心穩定與自由。</p>
+        <div class="socials">
+          <a class="social" href="#" aria-label="Instagram">📷</a>
+          <a class="social" href="#" aria-label="LINE">💬</a>
+          <a class="social" href="#" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div class="f-sec">
+        <h3>課程服務</h3>
+        <a href="#classes">實體課程</a>
+        <a href="#classes">線上錄影</a>
+        <a href="#testimonials">學員推薦</a>
+      </div>
+      <div class="f-sec">
+        <h3>聯絡資訊</h3>
+        <p>新北市新店區北新路一段 293 號</p>
+        <p>arkyoga@example.com</p>
+      </div>
+    </div>
+    <div class="f-bottom">© <span id="y"></span> 方舟瑜珈 Ark Yoga</div>
+    <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+  </footer>
+</body>
+</html>
